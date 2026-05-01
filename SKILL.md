@@ -110,8 +110,8 @@ Send them this:
 >
 > 1. Go to **https://developers.facebook.com/apps/**
 > 2. Click the green **"Create App"** button (top right).
-> 3. **Use case** → select **"Other"** → click **Next**.
-> 4. **App type** → select **"Business"** → click **Next**.
+> 3. **Use case** → select **"Create & manage ads with Marketing API"** → click **Next**. (Picking this use case auto-adds the Marketing API product and pre-enables the right permissions — much less to configure later.)
+> 4. **App type** → if asked, select **"Business"** → click **Next**.
 > 5. **Details:**
 >    - **App name:** `Ads CLI` (or whatever you want)
 >    - **App contact email:** your email
