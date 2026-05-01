@@ -118,6 +118,16 @@ Send them this:
 >    - **Business account:** pick your business
 > 6. Click **"Create App"**. May ask for your Facebook password.
 > 7. You'll land on the app dashboard. Look at the URL — it'll look like `developers.facebook.com/apps/1234567890/dashboard/`. **Copy the App ID** (the number) and paste it to me.
+>
+> ### 🚨 Now do this BEFORE leaving the app dashboard — saves you regenerating the token later
+>
+> 8. In the left sidebar click **App Settings → Basic**.
+> 9. Scroll down to **Privacy Policy URL** and paste a working URL (any public privacy policy page on a domain you control). If you don't have one, the fastest path is `https://[your-domain].com/privacy` — make sure the page actually loads in a fresh tab, otherwise Meta will block it. (No domain? Use a free Notion page set to public, or a GitHub Pages doc — Meta just needs the URL to load.)
+> 10. Scroll down further to **Category** and pick something like "Business and Pages" (required to flip the app to Live).
+> 11. Click **Save Changes** at the bottom.
+> 12. Now look at the **top of the page** — there's a toggle that says **"In development"**. Click it and confirm to flip the app to **"Live"**.
+>
+> **Why this matters:** If you skip steps 8–12, the token you generate in Phase 5 will work for the install check but will silently fail the moment you try to create real ad creatives — Meta returns "app is in development mode" and you'll have to come back, flip the app, AND regenerate a new token (the old one is permanently stuck in dev-mode). Doing it now = token works for everything from day one.
 
 When they give you the App ID, save it for later (you'll reference it in Phase 4 when they pick the app to generate the token from).
 
@@ -320,6 +330,7 @@ Then tell them:
 | `Error: No such option: --output` on `ads campaign list` | `--output` is a top-level flag, not a subcommand flag | Use `meta --output json ads campaign list` (top-level) |
 | `Error: No such option: --level` on `insights get` | CLI's insights only operate at scope of filter (`--ad-id`, `--adset-id`, `--campaign-id`) | Filter by ad/adset/campaign ID for per-entity insights — not `--level` |
 | Permissions check shows `threads_business_basic` selected | Meta auto-suggests it | Uncheck — not needed |
+| `Ads creative post was created by an app that is in development mode` (subcode 1885183) | App was in Dev mode when token was minted, OR Privacy Policy URL is missing | Phase 2 fix: add Privacy Policy URL in App Settings → Basic, save, then flip toggle to "Live" at top of dashboard. **Then regenerate the token** (the old one is permanently stuck in dev-mode). |
 
 ---
 
@@ -332,6 +343,3 @@ If the user has a memory system at `~/.claude/projects/.../memory/`, save:
 - Date of install
 
 This way future Claude sessions know it's already set up.
-
----
-Built by [@tenfoldmarc](https://instagram.com/tenfoldmarc). Follow for daily AI automation builds — real systems, not theory.
